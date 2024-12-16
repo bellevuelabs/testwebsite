@@ -4,17 +4,40 @@
     <title>My Website</title>
     <style>
         /* CSS goes here */
-        body { font-family: Arial, sans-serif; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin-top: 50px; 
+        }
+        button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer; 
+        }
+        #random-number { 
+            margin-top: 20px; 
+            font-size: 24px; 
+            color: #007BFF; 
+        }
     </style>
     <script>
         // JavaScript goes here
         document.addEventListener("DOMContentLoaded", function() {
-            console.log("Hello, world!");
+            const button = document.getElementById("generate-button");
+            const display = document.getElementById("random-number");
+
+            button.addEventListener("click", function() {
+                // Generate a random number between 1 and 10
+                const randomNumber = Math.floor(Math.random() * 10) + 1;
+                display.textContent = "Random Number: " + randomNumber;
+            });
         });
     </script>
 </head>
 <body>
     <h1>Welcome to My Website</h1>
-    <p>This is a simple web page.</p>
+    <p>Click the button below to generate a random number between 1 and 10:</p>
+    <button id="generate-button">Generate Random Number</button>
+    <div id="random-number"></div>
 </body>
 </html>
