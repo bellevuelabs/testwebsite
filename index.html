@@ -1,43 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Website</title>
+    <title>Interactive Mad Libs</title>
     <style>
-        /* CSS goes here */
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            margin-top: 50px; 
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px auto;
+            max-width: 600px;
         }
-        button { 
-            padding: 10px 20px; 
-            font-size: 16px; 
-            cursor: pointer; 
+        .mad-lib {
+            font-size: 18px;
+            margin-top: 30px;
+            font-style: italic;
+            color: #333;
         }
-        #random-number { 
-            margin-top: 20px; 
-            font-size: 24px; 
-            color: #007BFF; 
+        button {
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .mad-lib-part {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .section {
+            margin-bottom: 30px;
         }
     </style>
     <script>
         // JavaScript goes here
-        document.addEventListener("DOMContentLoaded", function() {
-            const button = document.getElementById("generate-button");
-            const display = document.getElementById("random-number");
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lists for random selection
+            const times = ["yesterday", "this morning", "last night", "a week ago"];
+            const places = ["grocery store", "library", "beach", "amusement park"];
+            const items = ["book", "banana", "pair of shoes", "souvenir"];
+            const events = ["birthday party", "wedding", "concert", "game night"];
 
-            button.addEventListener("click", function() {
-                // Generate a random number between 1 and 10
-                const randomNumber = Math.floor(Math.random() * 10) + 1;
-                display.textContent = "Random Number: " + randomNumber;
+            // References to mad lib parts
+            const timeSpan = document.getElementById("time");
+            const placeSpan = document.getElementById("place");
+            const itemSpan = document.getElementById("item");
+            const eventSpan = document.getElementById("event");
+
+            // Function to update a mad lib part
+            function updateMadLibPart(part, list) {
+                const randomValue = list[Math.floor(Math.random() * list.length)];
+                part.textContent = randomValue;
+            }
+
+            // Attach event listeners for each button
+            document.getElementById("update-time").addEventListener("click", function () {
+                updateMadLibPart(timeSpan, times);
+            });
+            document.getElementById("update-place").addEventListener("click", function () {
+                updateMadLibPart(placeSpan, places);
+            });
+            document.getElementById("update-item").addEventListener("click", function () {
+                updateMadLibPart(itemSpan, items);
+            });
+            document.getElementById("update-event").addEventListener("click", function () {
+                updateMadLibPart(eventSpan, events);
             });
         });
     </script>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>Click the button below to generate a random number between 1 and 10:</p>
-    <button id="generate-button">Generate Random Number</button>
-    <div id="random-number"></div>
+    <div class="section">
+        <h1>Interactive Mad Libs</h1>
+        <p>Click on a button to update specific parts of the story!</p>
+    </div>
+
+    <div class="section mad-lib">
+        <span id="time" class="mad-lib-part">[random time]</span> I went to the 
+        <span id="place" class="mad-lib-part">[random place]</span> to buy a 
+        <span id="item" class="mad-lib-part">[random item]</span> to bring to my friend's 
+        <span id="event" class="mad-lib-part">[random event]</span>.
+    </div>
+
+    <div class="section">
+        <button id="update-time">Change Time</button>
+        <button id="update-place">Change Place</button>
+        <button id="update-item">Change Item</button>
+        <button id="update-event">Change Event</button>
+    </div>
 </body>
 </html>
